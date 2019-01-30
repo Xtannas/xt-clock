@@ -1,0 +1,46 @@
+plugins {
+    id 'idea'
+    id 'application'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.20'
+    id 'com.github.johnrengelman.shadow' version '2.0.4'
+}
+
+group 'com.xtannas.clock'
+version '1.0'
+
+
+mainClassName = "com.xtannas.clock.MainKt"
+
+
+// options
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+idea {
+    module.downloadJavadoc = true
+    module.downloadSources = true
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.freeCompilerArgs = ["-Xuse-experimental=kotlin.contracts.ExperimentalContracts", "-XXLanguage:+InlineClasses"]
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.freeCompilerArgs = ["-Xuse-experimental=kotlin.contracts.ExperimentalContracts", "-XXLanguage:+InlineClasses"]
+}
+
+
+// project
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-reflect"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    
+    implementation "org.processing:core:+"
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:+"
+}
